@@ -12,6 +12,7 @@ class ThreadJob {
     uv_work_t uv_work;
     ThreadJob(){};
     ~ThreadJob(){
+    	delete []strFunc;
     	callback.Dispose();
     }; 
 };
