@@ -1,6 +1,6 @@
 {
   "name": "libuv_thread",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "A Node.js multi-thread package,using libuv lib",
   "main": "index.js",
   "scripts": {
