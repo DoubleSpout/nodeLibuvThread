@@ -39,7 +39,9 @@ To include the module in your project:
     libuv_thread(func, obj, callback);
 
 func: thread work function
+
 obj: arguments for the thread funtion
+
 callback:has two arguments,error and result,the result will be thread work return value
 
 
