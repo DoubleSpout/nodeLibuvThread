@@ -42,18 +42,22 @@ void LibuvThread::threadWork(ThreadJob *req_p){
 		Persistent<Context> context = Context::New();
 		context->Enter();
 		TryCatch onError;
-	
+		String::Utf8Value *v2;
+
 		Local<Value> result = Script::Compile(String::New(req_p->strFunc))->Run();
 		if (!onError.HasCaught()){
-			String::Utf8Value v2(result->ToString());	
-			req_p->result = *v2;	
+			v2 = new String::Utf8Value(result->ToString());		
 		}
 		else{
 			req_p->iserr = 1;
 			Local<Value> err = onError.Exception();
-			String::Utf8Value v3(err->ToString());
-			req_p->result = *v3;
+			v2 = new String::Utf8Value(err->ToString());
 		}
+
+		req_p->result = new char[strlen(**v2)+1];
+		strcpy(req_p->result,**v2);
+		req_p->result[strlen(**v2)] = '\0';
+		delete v2;
 		context.Dispose();
 }
 
@@ -61,6 +65,7 @@ void LibuvThread::afterWorkerCallback(uv_work_t *req, int status){//子线程执
  		HandleScope scope;
  		ThreadJob* req_p = (ThreadJob *) req->data;
  		Local<Value> argv[2];
+
  		if(req_p->iserr){
  			argv[0] = String::New(req_p->result);
  			argv[1] = Local<Value>::New(Null());		
