@@ -23,19 +23,13 @@ Handle<Value> LibuvThread::libuvThreadCC(const Arguments& args){
 };
 
 void LibuvThread::workerCallback(uv_work_t* req){ //子线程中执行代码
-	ThreadJob* req_p = (ThreadJob *) req->data;
-	Isolate* isolate = Isolate::New();   //V8的isolate类
-	if (Locker::IsActive()) {
-		Locker myLocker(isolate);			
-		isolate->Enter();	
-		threadWork(req_p);
-	}
-	else{
-		isolate->Enter();
-		threadWork(req_p);
-	}
-	isolate->Exit(); //退出 isolate
-	isolate->Dispose(); //销毁 isolate
+    ThreadJob* req_p = (ThreadJob *) req->data;
+    Isolate* isolate = Isolate::New();   //V8的isolate类
+    Locker myLocker(isolate);     
+    isolate->Enter(); 
+    threadWork(req_p);
+    isolate->Exit(); //退出 isolate
+    isolate->Dispose(); //销毁 isolate
 }
 
 void LibuvThread::threadWork(ThreadJob *req_p){
