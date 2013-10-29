@@ -6,4 +6,4 @@ void Init(Handle<Object> target) {
   target->Set(String::NewSymbol("libuvThreadCC"),
            FunctionTemplate::New(LibuvThread::libuvThreadCC)->GetFunction());
 }
-NODE_MODULE(libuvThread, Init)
+NODE_MODULE(uvThread, Init)
