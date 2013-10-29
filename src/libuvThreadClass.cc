@@ -1,5 +1,6 @@
 #include <node.h>
 #include <iostream>
+#include <string.h>
 #include <stdlib.h>
 #include "uv.h"
 #include "libuvThreadClass.h"
