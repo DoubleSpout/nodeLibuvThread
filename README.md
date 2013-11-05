@@ -1,4 +1,4 @@
-nodeLibuvThread[![Build Status](https://travis-ci.org/DoubleSpout/nodeLibuvThread.png?branch=master)](https://travis-ci.org/DoubleSpout/nodeLibuvThread)
+nodeLibuvThread [![Build Status](https://travis-ci.org/DoubleSpout/nodeLibuvThread.png?branch=master)](https://travis-ci.org/DoubleSpout/nodeLibuvThread) [![NPM version](https://badge.fury.io/js/libuv_thread.png)](http://badge.fury.io/js/libuv_thread)
 ===============
 
 node multi thread support using libuv.
